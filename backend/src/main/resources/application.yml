@@ -1,0 +1,33 @@
+spring:
+  application:
+    name: file-behavior-monitor
+  main:
+    headless: false
+
+app:
+  honeypotFiles:
+    - salary_2025.xlsx
+    - admin_passwords.txt
+  honeypot:
+    enabled: true
+    deployOnStart: true
+    cleanupOnStop: false
+    trapFolderName: .sys_trap
+    files:
+      - salary_2025.xlsx
+      - admin_passwords.txt
+    content:
+      salary_2025.xlsx: |
+        Employee,Salary
+        Jane Doe,150000
+      admin_passwords.txt: |
+        root: P@ssw0rd!
+  suspiciousExtensions:
+    - exe
+    - dll
+    - bat
+    - ps1
+    - jar
+    - sh
+  maxEventsStored: 500
+  dedupWindowMs: 300
